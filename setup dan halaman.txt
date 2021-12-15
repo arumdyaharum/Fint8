@@ -33,12 +33,9 @@ Cara Bikin Database
 - halaman Home / Dashboard (sesuaikan)
 --- Tampilan Saldo > Halaman Saldo
 --- List Produk dari tiap Vendor
---- pilih produk
+--- beli produk
 - halaman saldo
 --- isi saldo (kotak)
-- halaman cart
---- delete produk
---- checkout
 - halaman Investasi Saya
 --- list produk yang telah dibeli
 --- jual produk
