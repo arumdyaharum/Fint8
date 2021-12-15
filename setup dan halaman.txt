@@ -1,0 +1,49 @@
+Cara Install node_modules : npm i
+Menjalankan nodemon : npx nodemon app.js
+
+Cara Bikin Database
+1. (cek config)
+2. npx sequelize-cli db:create
+3. npx sequelize-cli db:migrate
+
+
+=== Main ===
+- Halaman home
+--- Masuk sebagai
+----- Vendor
+----- Buyer
+
+* wajib pake bootstrap (lihat home.ejs) *
+* penamaan views diawali per-bagian-nya (vendorHome.ejs) *
+
+=== Vendor ===
+- halaman daftar
+- halaman login
+- halaman home / Dashboard (sesuaikan)
+--- List Produk milik vendor
+--- tampilkan jumlah owner tiap produk
+--- edit produk
+--- hapus produk
+- halaman tambah produk
+- halaman edit produk
+
+=== Buyer ===
+- halaman daftar
+- halaman login
+- halaman Home / Dashboard (sesuaikan)
+--- Tampilan Saldo > Halaman Saldo
+--- List Produk dari tiap Vendor
+--- pilih produk
+- halaman saldo
+--- isi saldo (kotak)
+- halaman cart
+--- delete produk
+--- checkout
+- halaman Investasi Saya
+--- list produk yang telah dibeli
+--- jual produk
+- halaman profil
+--- tampilkan semua data buyer
+--- edit profil
+- halaman edit profil
+--- ubah password
