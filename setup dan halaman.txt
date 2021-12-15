@@ -26,6 +26,7 @@ Cara Bikin Database
 --- hapus produk
 - halaman tambah produk
 - halaman edit produk
+- logout
 
 === Buyer ===
 - halaman daftar
@@ -47,3 +48,4 @@ Cara Bikin Database
 --- edit profil
 - halaman edit profil
 --- ubah password
+- logout
