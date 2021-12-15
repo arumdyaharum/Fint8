@@ -1,0 +1,111 @@
+
+=== fintek === Fint8
+- jualan produk investasi
+- ada vendor ada pembeli
+- ada produk di tiap vendor
+- produk sertifikat
+(-) transfer uang / payment
+- checkout > transfer 
+- ada penampung saldo
+- bisa beli, jual, tahan
+- ada return, risiko, tipe investasi
+- harga gak dinamis (?)
+- dua interface pembeli & vendor
+- saldo digabung ke pembeli
+----- isi saldo masuk ke pembeli (kotak2in)
+- pembeli beli produk
+- bayar ngurangin saldo
+- pembeli list produk yg dia punya
+----- ada validasi kalo saldo tidak cukup
+----- vendor nambah produk
+-- nama
+-- return
+-- risiko
+-- hooks : static method buat generate kode produk
+----- pembeli
+-- nama
+-- email
+-- password
+-- hooks : saldo
+		   
+- search produk
+- sort risiko, return
+- validasi pas daftar kalo umur dibawah 17
+- 
+--- vendor produk 1:m
+--- pembeli (kepemilikan) produk n:m
+--- pembeli info_pembeli 1:1
+
+=== vendor ===
+- id
+- nama
+- email
+- password
+
+=== pembeli ===
+- id
+- nama
+- email
+- password
+- saldo
+- gender
+- umur
+
+
+- users (login)
+--- id
+--- name
+--- email 
+--- password
+--- role : vendor & buyer
+
+- Buyers
+--- id
+--- Money
+--- Gender
+--- Age
+--- BuyerId (buyer)
+
+- Products
+--- id
+--- name
+--- return
+--- risk
+--- Price
+--- VendorId (vendor)
+
+- Owners
+--- id
+--- BuyerId (buyer)
+--- ProductId
+
+
+=== education (elearning - google classroom) ===
+- ngirim tugas (url)
+- ngasih tugas (url)
+- ngasih materi (url)
+- nilai
+- dua interface guru sm siswa
+- di guru ada daftar siswa
+- ada kelas
+- guru kirim ke kelas
+- guru akses kelas siapa aja yg ngerjain tugas
+- sort nilai
+- search list kelas siswa
+- hooks
+--- guru (kelas ajar) kelas m:n
+--- siswa kelas 1:n
+--- tugas kelas 1:n
+--- siswa tugas 1:1
+--- guru materi 1:1
+--- materi kelas 1:n
+--- nilai siswa 1:1
+
+
+- users
+--- id
+--- email 
+--- password
+--- role : student & teacher
+
+- tugas
