@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Products.belongsTo(models.Users, {foreignKey: "VendorId"})
+      Products.belongsTo(models.Users, {foreignKey: "UserId"})
       Products.belongsToMany(models.Users, {through: models.Owners})
     }
   };
@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
     price_return: DataTypes.DECIMAL,
     risk: DataTypes.DECIMAL,
     price: DataTypes.INTEGER,
-    VendorId: DataTypes.INTEGER
+    UserId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Products',
