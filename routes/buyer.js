@@ -15,8 +15,8 @@ router.get('/logout', (req, res) => {
 })
 
 router.use((req, res, next) => {
-  if(req.session.usersId) {
-    if(req.session.role === 'buyer') {
+  if(req.session.users) {
+    if(req.session.users.role == 'buyer') {
       next()
     } else {
       let errors = 'Maaf Anda tidak bisa masuk.'

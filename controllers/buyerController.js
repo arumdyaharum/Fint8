@@ -48,16 +48,14 @@ class Controller {
     const { email, password } = req.body;
     Users.findOne({where: {email: email}})
     .then(data => {
-      console.log(data);
       if(data) {
-        if(bcryptjs.compareSync(password, data.password)) {
-          req.session.usersId = data.id
-          res.session.role = data.role
-          req.session.name = data.name
-          return res.redirect('/buyer')
+        let login = bcryptjs.compareSync(password, data.dataValues.password)
+        if(login) {
+          req.session.users = { usersId: data.dataValues.id, role: data.dataValues.role }
+          res.redirect('/buyer')
         } else {
           let errors = 'maaf email/password salah'
-          return res.redirect(`/buyer/login?errors=${errors}`)
+          res.redirect(`/buyer/login?errors=${errors}`)
         }
       } else {
         let errors = 'maaf email/password salah'
