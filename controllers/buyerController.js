@@ -104,6 +104,22 @@ class Controller {
     })
     .catch(err => res.send(err))
   }
+
+  static buyerSaldo(req, res) {
+    Users.findByPk(req.session.users.usersId, {
+      include: UsersDetails
+    })
+    .then(data => {
+      let uang = data.dataValues.UsersDetail.money + 100000
+      return UsersDetails.update({money: uang}, {where: {id : data.dataValues.UsersDetail.id}})
+    })
+    .then(data => {
+      res.redirect('/buyer')
+    })
+    .catch(err => {
+      res.send(err)
+    })
+  }
 }
 
 module.exports = Controller;

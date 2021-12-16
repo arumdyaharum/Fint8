@@ -32,13 +32,7 @@ router.get('/buy/:productId', (req, res) => {
   res.send('Hello World!')
 })
 
-router.get('/saldo', (req, res) => {
-  res.send('Hello World!')
-})
-
-router.get('/saldo/:jumlah', (req, res) => {
-  res.send('Hello World!')
-})
+router.get('/saldo', Controller.buyerSaldo)
 
 router.get('/investasiSaya', (req, res) => {
   res.send('Hello World!')
