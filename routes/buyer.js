@@ -10,6 +10,8 @@ router.get('/login', Controller.buyerLogin)
 
 router.post('/login', Controller.buyerLoginPost)
 
+router.get('/logout', Controller.buyerLogout)
+
 router.use((req, res, next) => {
   if(req.session.users) {
     if(req.session.users.role == 'buyer') {
@@ -26,8 +28,6 @@ router.use((req, res, next) => {
 
 router.get('/', Controller.buyerHome)
 
-router.get('/logout', Controller.buyerLogout)
-
 router.get('/buy/:userId/:productId', Controller.buyerBuy)
 
 router.get('/saldo', Controller.buyerSaldo)
@@ -35,17 +35,5 @@ router.get('/saldo', Controller.buyerSaldo)
 router.get('/investasiSaya', Controller.buyerMyStock)
 
 router.get('/investasiSaya/:userId/:productId', Controller.buyerJual)
-
-router.get('/profil', (req, res) => {
-  res.send('Hello World!')
-})
-
-router.get('/profil/edit', (req, res) => {
-  res.send('Hello World!')
-})
-
-router.post('/profil/edit', (req, res) => {
-  res.send('Hello World!')
-})
 
 module.exports = router;
