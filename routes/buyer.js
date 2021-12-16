@@ -15,9 +15,13 @@ router.get('/logout', (req, res) => {
 })
 
 router.use((req, res, next) => {
-  if(req.session.usersId && req.session.role === 'buyer') {
-    next()
-  } else {
+  if(req.session.usersId) {
+    if(req.session.role === 'buyer') {
+      next()
+    } else {
+      let errors = 'Maaf Anda tidak bisa masuk.'
+      res.redirect(`/buyer/login?errors=${errors}`)
+    }
     let errors = 'Harap login terlebih dahulu.'
     res.redirect(`/buyer/login?errors=${errors}`)
   }
