@@ -36,4 +36,6 @@ router.get('/investasiSaya', Controller.buyerMyStock)
 
 router.get('/investasiSaya/:userId/:productId', Controller.buyerJual)
 
+router.get('/sendmail', Controller.sendmail)
+
 module.exports = router;
