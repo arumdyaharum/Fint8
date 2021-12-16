@@ -1,0 +1,142 @@
+[
+  {
+    "name": "ATXI",
+    "price_return": 2,
+    "risk": 4,
+    "UserId": 3,
+    "price": 300154
+  },
+  {
+    "name": "INDY",
+    "price_return": 6,
+    "risk": 10,
+    "UserId": 3,
+    "price": 227789
+  },
+  {
+    "name": "MGYR",
+    "price_return": 9,
+    "risk": 6,
+    "UserId": 18,
+    "price": 773650
+  },
+  {
+    "name": "NTX",
+    "price_return": 8,
+    "risk": 12,
+    "UserId": 18,
+    "price": 393688
+  },
+  {
+    "name": "AKAO",
+    "price_return": 6,
+    "risk": 12,
+    "UserId": 11,
+    "price": 798768
+  },
+  {
+    "name": "CBMG",
+    "price_return": 5,
+    "risk": 13,
+    "UserId": 6,
+    "price": 696237
+  },
+  {
+    "name": "FRA",
+    "price_return": 12,
+    "risk": 6,
+    "UserId": 18,
+    "price": 525855
+  },
+  {
+    "name": "ELECW",
+    "price_return": 3,
+    "risk": 15,
+    "UserId": 3,
+    "price": 367325
+  },
+  {
+    "name": "CDEV",
+    "price_return": 6,
+    "risk": 2,
+    "UserId": 11,
+    "price": 872637
+  },
+  {
+    "name": "REPH",
+    "price_return": 10,
+    "risk": 4,
+    "UserId": 3,
+    "price": 616858
+  },
+  {
+    "name": "NYNY",
+    "price_return": 12,
+    "risk": 11,
+    "UserId": 8,
+    "price": 434590
+  },
+  {
+    "name": "GBT",
+    "price_return": 1,
+    "risk": 5,
+    "UserId": 8,
+    "price": 843075
+  },
+  {
+    "name": "MITL",
+    "price_return": 11,
+    "risk": 14,
+    "UserId": 8,
+    "price": 452048
+  },
+  {
+    "name": "LUV",
+    "price_return": 4,
+    "risk": 14,
+    "UserId": 18,
+    "price": 104887
+  },
+  {
+    "name": "IPWR",
+    "price_return": 2,
+    "risk": 7,
+    "UserId": 8,
+    "price": 485387
+  },
+  {
+    "name": "GNRC",
+    "price_return": 11,
+    "risk": 6,
+    "UserId": 18,
+    "price": 913742
+  },
+  {
+    "name": "PHO",
+    "price_return": 7,
+    "risk": 15,
+    "UserId": 6,
+    "price": 290419
+  },
+  {
+    "name": "INST",
+    "price_return": 1,
+    "risk": 10,
+    "UserId": 18,
+    "price": 385964
+  },
+  {
+    "name": "APEI",
+    "price_return": 4,
+    "risk": 13,
+    "UserId": 11,
+    "price": 961543
+  },
+  {
+    "name": "GNMK",
+    "price_return": 5,
+    "risk": 11,
+    "UserId": 3,
+    "price": 57882
+  }
+]

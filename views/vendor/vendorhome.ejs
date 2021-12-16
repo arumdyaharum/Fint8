@@ -1,0 +1,69 @@
+<%- include('../partials/header', {title: "Beranda Vendor"}) %>
+<!-- <%- include('partials/navbar') %> -->
+
+<div class="container">
+  <h1 class="my-3">Selamat Datang <%=dataUser.name %></h1>
+  <div class="card text-white bg-primary my-3">
+    <div class="row g-0">
+      <div class="col-md-12">
+        <div class="card-body">
+          <!-- <h5 class="card-title">Saldo Anda : xxxx </h5> -->
+          <p class="card-text">Klik tombol Dibawah untuk menambah produk investasi</p>
+          <a class="btn btn-light" href="/vendor/detail/add/<%=dataUser.id%>" role="button">Add Product</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row my-3">
+    <div class="col-md-6">
+      <h2>Daftar Semua Produk Investasi</h2>
+    </div>
+    <div class="col-md-6 text-end">
+      <p>Sort : <a href="/buyer?sort=price&order=desc">Harga Tertinggi</a> | <a href="/buyer?sort=price&order=asc">Harga Terendah</a></p>
+    </div>
+  </div>
+  <!-- < if(errors.length > 0) {
+    errors.forEach(val => { >
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <= val >
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    < })} > -->
+
+  <div class="row my-3">
+    <% dataProduct.forEach(val => { %>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-12">
+            <div class="card-body">
+              <h5 class="card-title"><%= val.name %></h5>
+              <p class="card-text"><span class="text-muted"><%= val.User.name %></span></p>
+              <p class="card-text">
+                Return : <%= val.price_return %>%<br>
+                Risk : <%= val.risk %>% <br>
+                Jumlah Investor : <% let x = 0%> 
+                <%dataOwner.forEach(el => {if(el.ProductId === val.id){ %>
+
+                 
+                 <% x = el.jumlah %> 
+                  
+                  
+              
+                
+              <% }}) %>
+              <%= x %> 
+              </p>
+              <p class="card-text fw-bold"><%= formatUang(val.price) %></p>
+              <a class="btn btn-danger" href="/vendor/delete/<%=dataUser.id%>/<%=val.id%>" role="button">Hapus Produk</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>    
+
+
+<%- include('../partials/footer') %>

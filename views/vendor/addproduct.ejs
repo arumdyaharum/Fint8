@@ -1,0 +1,41 @@
+<%- include('../partials/header', {title: "Menambah Produk Investasi" }) %>
+  <%- include('partials/navbardaftar') %>
+
+  <div class="container my-3" style="width:500px;">
+    <h1 class="text-center">Menambah Produk Investasi</h1>
+    <!-- < if(errors) {
+    errors.forEach(val => { >
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <= val >
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    < })} > -->
+    <form action="/vendor/detail/add/<%=data.id%>" method="post">
+      <div class="mb-3">
+        <label for="name" class="form-label">Nama</label>
+        <input type="text" name="name" class="form-control" id="name">
+      </div>
+      <div class="mb-3">
+        <label for="price_return" class="form-label">Return Investasi</label>
+        <input type="number" name="price_return" class="form-control" id="price_return">
+      </div>
+      <div class="mb-3">
+        <label for="risk" class="form-label">Risk</label>
+        <input type="number" name="risk" class="form-control" id="risk">
+      </div>
+      <div class="mb-3">
+        <label for="price" class="form-label">Harga Produk</label>
+        <input type="number" name="price" class="form-control" id="price">
+      </div>
+      <div class="row">
+        <div class="col-sm-4">
+          <input type="submit" class="btn btn-primary" value="Tambah Produk">
+        </div>
+    
+      </div>
+  </div>
+
+  </form>
+  </div>
+
+  <%- include('../partials/footer') %>

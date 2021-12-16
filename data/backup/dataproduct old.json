@@ -1,0 +1,122 @@
+[
+  {
+    "name": "ATXI",
+    "price_return": 2,
+    "risk": "low",
+    "UserId": 3
+  },
+  {
+    "name": "INDY",
+    "price_return": 6,
+    "risk": "low",
+    "UserId": 3
+  },
+  {
+    "name": "MGYR",
+    "price_return": 9,
+    "risk": "low",
+    "UserId": 18
+  },
+  {
+    "name": "NTX",
+    "price_return": 8,
+    "risk": "high",
+    "UserId": 18
+  },
+  {
+    "name": "AKAO",
+    "price_return": 6,
+    "risk": "medium",
+    "UserId": 11
+  },
+  {
+    "name": "CBMG",
+    "price_return": 5,
+    "risk": "medium",
+    "UserId": 6
+  },
+  {
+    "name": "FRA",
+    "price_return": 12,
+    "risk": "medium",
+    "UserId": 18
+  },
+  {
+    "name": "ELECW",
+    "price_return": 3,
+    "risk": "high",
+    "UserId": 3
+  },
+  {
+    "name": "CDEV",
+    "price_return": 6,
+    "risk": "medium",
+    "UserId": 11
+  },
+  {
+    "name": "REPH",
+    "price_return": 10,
+    "risk": "medium",
+    "UserId": 3
+  },
+  {
+    "name": "NYNY",
+    "price_return": 12,
+    "risk": "high",
+    "UserId": 8
+  },
+  {
+    "name": "GBT",
+    "price_return": 1,
+    "risk": "low",
+    "UserId": 8
+  },
+  {
+    "name": "MITL",
+    "price_return": 11,
+    "risk": "low",
+    "UserId": 8
+  },
+  {
+    "name": "LUV",
+    "price_return": 4,
+    "risk": "high",
+    "UserId": 18
+  },
+  {
+    "name": "IPWR",
+    "price_return": 2,
+    "risk": "medium",
+    "UserId": 8
+  },
+  {
+    "name": "GNRC",
+    "price_return": 11,
+    "risk": "high",
+    "UserId": 18
+  },
+  {
+    "name": "PHO",
+    "price_return": 7,
+    "risk": "high",
+    "UserId": 6
+  },
+  {
+    "name": "INST",
+    "price_return": 1,
+    "risk": "medium",
+    "UserId": 18
+  },
+  {
+    "name": "APEI",
+    "price_return": 4,
+    "risk": "low",
+    "UserId": 11
+  },
+  {
+    "name": "GNMK",
+    "price_return": 5,
+    "risk": "low",
+    "UserId": 3
+  }
+]
