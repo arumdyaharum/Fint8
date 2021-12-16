@@ -22,8 +22,8 @@ class Controller {
       return Users.create(valueUsers)
     })
     .then(data => {
-      const valueBuyers = { gender, age, BuyerId: data.id, createdAt: new Date(), updatedAt: new Date() }
-      return Buyers.create(valueBuyers)
+      const valueBuyers = { gender, age: parseInt(age), UserId: data.dataValues.id, createdAt: new Date(), updatedAt: new Date() }
+      return UsersDetail.create(valueBuyers)
     })
     .then(data => res.redirect('/buyer/login'))
     .catch(err => {
