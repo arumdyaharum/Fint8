@@ -2,8 +2,7 @@
 const {
   Model
 } = require('sequelize');
-
-const bcryptjs = require('bcryptjs');
+const bcryptjs = require('bcryptjs')
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
     /**
@@ -12,8 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      Users.hasOne(models.UsersDetail, {foreignKey: "UserId"})
-      Users.hasMany(models.Products, {foreignKey: "UserId"})
+      Users.hasOne(models.UsersDetails, {foreignKey: "UserId"})
       Users.belongsToMany(models.Products, {through: models.Owners})
     }
   };

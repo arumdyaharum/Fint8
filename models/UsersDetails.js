@@ -10,16 +10,31 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      UsersDetails.belongsTo(models.Users, {foreignKey: "UserId"})
+      // define association here
     }
   };
   UsersDetails.init({
     money: DataTypes.INTEGER,
-    gender: DataTypes.STRING,
-    age: DataTypes.INTEGER,
+    gender: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true
+      }
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: true
+      }
+    },
     UserId: DataTypes.INTEGER
   }, {
     sequelize,
+    hooks : {
+      beforeCreate: (instance, option) => {
+        instance.money = 0;
+      }
+    },
     modelName: 'UsersDetails',
   });
   return UsersDetails;
