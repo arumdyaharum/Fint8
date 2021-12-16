@@ -20,7 +20,7 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER
       },
-      VendorId: {
+      UserId: {
         type: Sequelize.INTEGER,
         references: {
           model: {

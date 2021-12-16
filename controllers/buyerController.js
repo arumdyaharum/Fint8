@@ -1,4 +1,4 @@
-const { Buyers, Owners, Products, Users } = require('../models/index.js')
+const { UsersDetail, Owners, Products, Users } = require('../models/index.js')
 const bcryptjs = require('bcryptjs')
 
 class Controller {
