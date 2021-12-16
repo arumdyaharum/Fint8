@@ -1,5 +1,6 @@
 const { UsersDetails, Owners, Products, Users } = require('../models/index.js')
 const bcryptjs = require('bcryptjs')
+const { Op } = require('sequelize')
 const formatUang = require('../helpers/formatUang')
 
 class Controller {
@@ -81,17 +82,22 @@ class Controller {
   static buyerHome(req, res) {
     let dataUser;
     Users.findByPk(req.session.users.usersId, {
-      include: [{
-        model: Products
-      }, {
-        model: UsersDetails
-      }]
+      include: UsersDetails
     })
     .then(data => {
       dataUser = data
-      return Products.findAll({
-        include: Users
-      })
+      let find = {
+        include: {
+          model: Users
+        }
+      }
+      if(req.query.search) {
+        find.where.name = {[Op.iLike]: `%${req.query.search}%`}
+      }
+      if(req.query.sort) {
+        find.order = [[req.query.sort, req.query.order]]
+      }
+      return Products.findAll(find)
     })
     .then(data => {
       res.render('buyer/buyerHome', {product: data, data: dataUser, formatUang})

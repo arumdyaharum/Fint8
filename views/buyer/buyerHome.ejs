@@ -1,13 +1,13 @@
 <%- include('../partials/header', {title: "Buyer Beranda"}) %>
 <%- include('partials/navbar') %>
 <div class="container">
-  <div class="card my-3">
+  <div class="card text-white bg-primary my-3">
     <div class="row g-0">
       <div class="col-md-12">
         <div class="card-body">
           <h5 class="card-title">Saldo Anda : <%= formatUang(data.UsersDetail.money) %></h5>
           <p class="card-text">Silakan tambah saldo sebelum membeli produk investasi</p>
-          <a class="btn btn-primary" href="/buyer/saldo" role="button">Tambah Saldo</a>
+          <a class="btn btn-light" href="/buyer/saldo" role="button">Tambah Saldo</a>
         </div>
       </div>
     </div>
@@ -20,10 +20,12 @@
       <p>Sort : <a href="/buyer?sort=price&order=desc">Harga Tertinggi</a> | <a href="/buyer?sort=price&order=asc">Harga Terendah</a></p>
     </div>
     <div class="col-md-4">
-      <form action="/buyer">
-        <input type="type" name="search" class="form-control">
-        <input type="submit" value="search" class="btn btn-primary">
-      </form>
+      <!-- <form action="/buyer">
+        <div class="input-group">
+          <input type="text" name="search" class="form-control" placeholder="Cari Nama Produk">
+          <input class="btn btn-primary" type="submit" value="search">
+        </div>
+      </form> -->
     </div>
   </div>
   <div class="row my-3">
@@ -36,14 +38,11 @@
               <h5 class="card-title"><%= val.name %></h5>
               <p class="card-text"><small class="text-muted"><%= val.User.name %></small></p>
               <p class="card-text">
-                <div class="col-md-6">Return : <%= val.price_return %></div>
-                <div class="col-md-6">Risk : <%= val.risk %></div>
+                Return : <%= val.price_return %>%<br>
+                Risk : <%= val.risk %>%
               </p>
               <p class="card-text fw-bold"><%= formatUang(val.price) %></p>
-              <% data.Products.forEach(el => {
-                if(el.id !== val.id) { %>
-                <a class="btn btn-primary" href="/buyer/buy/<%= val.id %>" role="button">Beli Produk</a>
-              <% }}) %>
+              <a class="btn btn-primary" href="/buyer/buy/<%= val.id %>" role="button">Beli Produk</a>
             </div>
           </div>
         </div>
