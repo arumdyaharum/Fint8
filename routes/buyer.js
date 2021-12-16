@@ -6,16 +6,21 @@ router.get('/daftar', Controller.buyerDaftar)
 
 router.post('/daftar', Controller.buyerDaftarPost)
 
-router.get('/login', (req, res) => {
-  res.send('Hello World!')
-})
+router.get('/login', Controller.buyerLogin)
 
-router.post('/login', (req, res) => {
-  res.send('Hello World!')
-})
+router.post('/login', Controller.buyerLoginPost)
 
 router.get('/logout', (req, res) => {
   res.send('Hello World!')
+})
+
+router.use((req, res, next) => {
+  if(req.session.usersId && req.session.role === 'buyer') {
+    next()
+  } else {
+    let errors = 'Harap login terlebih dahulu.'
+    res.redirect(`/buyer/login?errors=${errors}`)
+  }
 })
 
 router.get('/', (req, res) => {

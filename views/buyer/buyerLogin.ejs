@@ -1,0 +1,33 @@
+<%- include('../partials/header', {title: "Login sebagai Buyer"}) %>
+<%- include('partials/navbarEmpty') %>
+
+<div class="container my-3" style="width:500px;">
+  <h1 class="text-center">Login sebagai Buyer</h1>
+  <% if(errors) {
+    errors.forEach(val => { %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= val %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% })} %>
+  <form action="/buyer/login" method="post">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" id="email">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control" id="password">
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <input type="submit" class="btn btn-primary" value="Login">
+      </div>
+      <div class="col-sm-8 text-end">
+        Belum punya akun? <a href="/buyer/daftar">Daftar disini!</a>
+      </div>
+    </div>
+  </form>
+</div>   
+
+<%- include('../partials/footer') %>
