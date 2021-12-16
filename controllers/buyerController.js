@@ -90,7 +90,13 @@ class Controller {
     })
     .then(data => {
       dataUser = data
-      return Products.buyerSort(req.query.sort, req.query.order)
+      let find = {
+        include: Users
+      }
+      if(req.query.sort) {
+        find.order = [[req.query.sort, req.query.order]]
+      }
+      return Products.buyerSort(find)
     })
     .then(data => {
       res.render('buyer/buyerHome', {product: data, data: dataUser, errors, formatUang})

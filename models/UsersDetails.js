@@ -15,8 +15,19 @@ module.exports = (sequelize, DataTypes) => {
   };
   UsersDetails.init({
     money: DataTypes.INTEGER,
-    gender: DataTypes.STRING,
-    age: DataTypes.INTEGER,
+    gender: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true
+      }
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: true,
+        min: 17
+      }
+    },
     UserId: DataTypes.INTEGER
   }, {
     sequelize,

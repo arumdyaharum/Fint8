@@ -13,13 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       Products.belongsTo(models.Users, {foreignKey: "UserId"})
       Products.belongsToMany(models.Users, {through: models.Owners})
     }
-    static buyerSort(sort, order) {
-      let find = {
-        include: Users
-      }
-      if(sort) {
-        find.order = [[sort, order]]
-      }
+    static buyerSort(find) {
       return Products.findAll(find)
     }
 
