@@ -22,6 +22,7 @@ router.use((req, res, next) => {
       let errors = 'Maaf Anda tidak bisa masuk.'
       res.redirect(`/buyer/login?errors=${errors}`)
     }
+  } else {
     let errors = 'Harap login terlebih dahulu.'
     res.redirect(`/buyer/login?errors=${errors}`)
   }
