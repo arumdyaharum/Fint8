@@ -1,4 +1,4 @@
-const { UsersDetail, Owners, Products, Users } = require('../models/index.js')
+const { UsersDetails, Owners, Products, Users } = require('../models/index.js')
 const bcryptjs = require('bcryptjs')
 
 class Controller {
@@ -23,7 +23,7 @@ class Controller {
     })
     .then(data => {
       const valueBuyers = { gender, age: parseInt(age), UserId: data.dataValues.id, createdAt: new Date(), updatedAt: new Date() }
-      return UsersDetail.create(valueBuyers)
+      return UsersDetails.create(valueBuyers)
     })
     .then(data => res.redirect('/buyer/login'))
     .catch(err => {

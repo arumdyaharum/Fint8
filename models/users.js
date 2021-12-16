@@ -2,7 +2,8 @@
 const {
   Model
 } = require('sequelize');
-const bcryptjs = require('bcryptjs')
+
+const bcryptjs = require('bcryptjs');
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
     /**
@@ -12,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       Users.hasOne(models.UsersDetails, {foreignKey: "UserId"})
+      Users.hasMany(models.Products, {foreignKey: "UserId"})
       Users.belongsToMany(models.Products, {through: models.Owners})
     }
   };
