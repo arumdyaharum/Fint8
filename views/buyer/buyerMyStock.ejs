@@ -1,0 +1,33 @@
+<%- include('../partials/header', {title: "Buyer Investasi Saya"}) %>
+<%- include('partials/navbar') %>
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-12">
+      <h2>Daftar Investasi Saya</h2>
+    </div>
+  </div>
+  <div class="row my-3">
+    <% data.forEach(val => { %>
+    <div class="col-md-4">
+      <div class="card mb-3">
+        <div class="row g-0">
+          <div class="col-md-12">
+            <div class="card-body">
+              <h5 class="card-title"><%= val.name %></h5>
+              <p class="card-text"><span class="text-muted"><%= val.User.name %></span></p>
+              <p class="card-text">
+                Return : <%= val.price_return %>%<br>
+                Risk : <%= val.risk %>%
+              </p>
+              <p class="card-text fw-bold"><%= formatUang(val.price) %></p>
+              <a class="btn btn-danger" href="/buyer/investasiSaya/<%= val.Owners.UserId %>/<%= val.Owners.ProductId %>" role="button">Jual Produk</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% }) %>
+  </div>
+</div>    
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,49 @@
+<%- include('../partials/header', {title: "Daftar sebagai Buyer"}) %>
+<%- include('partials/navbarEmpty') %>
+
+<div class="container my-3" style="width:500px;">
+  <h1 class="text-center">Daftar sebagai Buyer</h1>
+  <% if(errors) {
+    errors.forEach(val => { %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= val %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% })} %>
+  <form action="/buyer/daftar" method="post">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nama</label>
+      <input type="text" name="name" class="form-control" id="name">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" name="email" class="form-control" id="email">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" name="password" class="form-control" id="password">
+    </div>
+    <div class="mb-3">
+      <label for="age" class="form-label">Usia</label>
+      <input type="number" name="age" class="form-control" id="age">
+    </div>
+    <div class="mb-3">
+      <label for="gender" class="form-label">Jenis Kelamin</label>
+      <select class="form-select" name="gender" id="gender">
+        <option selected disabled>=== Pilih ===</option>
+        <option value="Perempuan">Perempuan</option>
+        <option value="Laki-laki">Laki-laki</option>
+      </select>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <input type="submit" class="btn btn-primary" value="Daftar">
+      </div>
+      <div class="col-sm-8 text-end">
+        Sudah punya akun? <a href="/buyer/login">Login disini!</a>
+      </div>
+    </div>
+  </form>
+</div>   
+
+<%- include('../partials/footer') %>
