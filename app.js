@@ -23,3 +23,11 @@ app.use('/', router)
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+// npx sequelize-cli model:generate --name Users --attributes name:string,email:string,password:string,role:string
+
+// npx sequelize-cli model:generate --name Owners --attributes UserId:integer,ProductId:integer
+
+// npx sequelize-cli model:generate --name UsersDetails --attributes money:integer,gender:string,age:integer,UserId:integer
+
+// npx sequelize-cli model:generate --name Products --attributes name:string,price_return:decimal,risk:decimal,price:integer,UserId:integer
