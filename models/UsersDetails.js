@@ -20,6 +20,11 @@ module.exports = (sequelize, DataTypes) => {
     UserId: DataTypes.INTEGER
   }, {
     sequelize,
+    hooks : {
+      beforeCreate: (instance, option) => {
+        instance.money = 0;
+      }
+    },
     modelName: 'UsersDetails',
   });
   return UsersDetails;

@@ -1,5 +1,6 @@
 const { UsersDetails, Owners, Products, Users } = require('../models/index.js')
 const bcryptjs = require('bcryptjs')
+const formatUang = require('../helpers/formatUang')
 
 class Controller {
   static buyerDaftar(req, res) {
@@ -65,6 +66,37 @@ class Controller {
     .catch(err => {
       res.send(err)
     })
+  }
+
+  static buyerLogout(req, res) {
+    req.session.destroy(err => {
+      if(err) {
+        res.send(err)
+      } else {
+        res.redirect('/buyer')
+      }
+    })
+  }
+
+  static buyerHome(req, res) {
+    let dataUser;
+    Users.findByPk(req.session.users.usersId, {
+      include: [{
+        model: Products
+      }, {
+        model: UsersDetails
+      }]
+    })
+    .then(data => {
+      dataUser = data
+      return Products.findAll({
+        include: Users
+      })
+    })
+    .then(data => {
+      res.render('buyer/buyerHome', {product: data, data: dataUser, formatUang})
+    })
+    .catch(err => res.send(err))
   }
 }
 

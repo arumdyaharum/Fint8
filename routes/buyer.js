@@ -10,9 +10,7 @@ router.get('/login', Controller.buyerLogin)
 
 router.post('/login', Controller.buyerLoginPost)
 
-router.get('/logout', (req, res) => {
-  res.send('Hello World!')
-})
+router.get('/logout', Controller.buyerLogout)
 
 router.use((req, res, next) => {
   if(req.session.users) {
@@ -28,7 +26,9 @@ router.use((req, res, next) => {
   }
 })
 
-router.get('/', (req, res) => {
+router.get('/', Controller.buyerHome)
+
+router.get('/buy/:productId', (req, res) => {
   res.send('Hello World!')
 })
 
