@@ -28,19 +28,13 @@ router.get('/', Controller.buyerHome)
 
 router.get('/logout', Controller.buyerLogout)
 
-router.get('/buy/:productId', (req, res) => {
-  res.send('Hello World!')
-})
+router.get('/buy/:userId/:productId', Controller.buyerBuy)
 
 router.get('/saldo', Controller.buyerSaldo)
 
-router.get('/investasiSaya', (req, res) => {
-  res.send('Hello World!')
-})
+router.get('/investasiSaya', Controller.buyerMyStock)
 
-router.get('/investasiSaya/:productId/jual', (req, res) => {
-  res.send('Hello World!')
-})
+router.get('/investasiSaya/:userId/:productId', Controller.buyerJual)
 
 router.get('/profil', (req, res) => {
   res.send('Hello World!')

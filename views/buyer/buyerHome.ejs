@@ -13,21 +13,20 @@
     </div>
   </div>
   <div class="row my-3">
-    <div class="col-md-4">
-      <h2>Daftar Produk Investasi</h2>
+    <div class="col-md-6">
+      <h2>Daftar Semua Produk Investasi</h2>
     </div>
-    <div class="col-md-4">
+    <div class="col-md-6 text-end">
       <p>Sort : <a href="/buyer?sort=price&order=desc">Harga Tertinggi</a> | <a href="/buyer?sort=price&order=asc">Harga Terendah</a></p>
     </div>
-    <div class="col-md-4">
-      <!-- <form action="/buyer">
-        <div class="input-group">
-          <input type="text" name="search" class="form-control" placeholder="Cari Nama Produk">
-          <input class="btn btn-primary" type="submit" value="search">
-        </div>
-      </form> -->
-    </div>
   </div>
+  <% if(errors.length > 0) {
+    errors.forEach(val => { %>
+      <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <%= val %>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% })} %>
   <div class="row my-3">
     <% product.forEach(val => { %>
     <div class="col-md-4">
@@ -36,13 +35,13 @@
           <div class="col-md-12">
             <div class="card-body">
               <h5 class="card-title"><%= val.name %></h5>
-              <p class="card-text"><small class="text-muted"><%= val.User.name %></small></p>
+              <p class="card-text"><span class="text-muted"><%= val.User.name %></span></p>
               <p class="card-text">
                 Return : <%= val.price_return %>%<br>
                 Risk : <%= val.risk %>%
               </p>
               <p class="card-text fw-bold"><%= formatUang(val.price) %></p>
-              <a class="btn btn-primary" href="/buyer/buy/<%= val.id %>" role="button">Beli Produk</a>
+              <a class="btn btn-primary" href="/buyer/buy/<%= data.id %>/<%= val.id %>" role="button">Beli Produk</a>
             </div>
           </div>
         </div>

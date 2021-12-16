@@ -81,18 +81,17 @@ class Controller {
 
   static buyerHome(req, res) {
     let dataUser;
+    let errors = []
+    if(req.query.errors) {
+      errors = req.query.errors.split(',')
+    }
     Users.findByPk(req.session.users.usersId, {
       include: UsersDetails
     })
     .then(data => {
       dataUser = data
       let find = {
-        include: {
-          model: Users
-        }
-      }
-      if(req.query.search) {
-        find.where.name = {[Op.iLike]: `%${req.query.search}%`}
+        include: Users
       }
       if(req.query.sort) {
         find.order = [[req.query.sort, req.query.order]]
@@ -100,7 +99,7 @@ class Controller {
       return Products.findAll(find)
     })
     .then(data => {
-      res.render('buyer/buyerHome', {product: data, data: dataUser, formatUang})
+      res.render('buyer/buyerHome', {product: data, data: dataUser, errors, formatUang})
     })
     .catch(err => res.send(err))
   }
@@ -115,6 +114,79 @@ class Controller {
     })
     .then(data => {
       res.redirect('/buyer')
+    })
+    .catch(err => {
+      res.send(err)
+    })
+  }
+
+  static buyerMyStock(req, res) {
+    Users.findByPk(req.session.users.usersId, {
+      include: {
+        model: Products,
+        include: Users
+      }
+    })
+    .then(data => {
+      res.render('buyer/buyerMyStock', {data: data.Products, formatUang})
+    })
+  }
+
+  static buyerJual(req, res) {
+    let uang;
+    UsersDetails.findOne({where: {UserId: req.params.userId}})
+    .then(data => {
+      uang = data.money
+      return Products.findOne({where: {id: req.params.productId}})
+    })
+    .then(data => {
+      let tambah = uang + data.price
+      return UsersDetails.update({money: tambah}, {where: {UserId: req.params.userId}})
+    })
+    .then(data => {
+      return Owners.destroy({where: {
+        UserId: req.params.userId,
+        ProductId: req.params.productId
+      }})
+    })
+    .then(data => {
+      res.redirect('/buyer/investasiSaya')
+    })
+    .catch(err => {
+      res.send(err)
+    })
+  }
+
+  static buyerBuy(req, res) {
+    let uang;
+    Owners.findOne({where: {UserId: req.params.userId, ProductId: req.params.productId}})
+    .then(data => {
+      if(data) {
+        let errors = 'Maaf Anda telah membeli produk tersebut.'
+        res.redirect(`/buyer?errors=${errors}`)
+      } else {
+        return UsersDetails.findOne({where: {UserId: req.params.userId}})
+      }
+    })
+    .then(data => {
+      uang = data.money
+      return Products.findOne({where: {id: req.params.productId}})
+    })
+    .then(data => {
+      let selisih = uang - data.price
+      if(selisih < 0) {
+        let errors = 'Maaf uang Anda tidak cukup.'
+        res.redirect(`/buyer?errors=${errors}`)
+      } else {
+        return UsersDetails.update({money: selisih}, {where: {UserId: req.params.userId}})
+      }
+    })
+    .then(data => {
+      let buy = { UserId: req.params.userId, ProductId: req.params.productId, createdAt:new Date(), updatedAt:new Date() }
+      return Owners.create(buy)
+    })
+    .then(data => {
+      res.redirect('/buyer/investasiSaya')
     })
     .catch(err => {
       res.send(err)
