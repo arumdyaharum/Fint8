@@ -15,11 +15,27 @@ module.exports = (sequelize, DataTypes) => {
   };
   Buyers.init({
     money: DataTypes.INTEGER,
-    gender: DataTypes.STRING,
-    age: DataTypes.INTEGER,
+    gender: {
+      type: DataTypes.STRING,
+      validate: {
+        notEmpty: true
+      }
+    },
+    age: {
+      type: DataTypes.INTEGER,
+      validate: {
+        notEmpty: true,
+        min: 17
+      }
+    },
     BuyerId: DataTypes.INTEGER
   }, {
     sequelize,
+    hooks: {
+      beforeCreate: (instance, option) => {
+        instance.money = 0;
+      }
+    },
     modelName: 'Buyers',
   });
   return Buyers;
