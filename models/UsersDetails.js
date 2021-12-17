@@ -25,7 +25,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       validate: {
         notEmpty: true,
-        min: 17
+        min: {
+          args: 17,
+          msg : "Umur Belum Mencukupi, Khusus 17 Tahun Keatas"
+        }
       }
     },
     UserId: DataTypes.INTEGER

@@ -1,0 +1,92 @@
+[
+  {
+    "money": 543985,
+    "gender": "Female",
+    "age": 62,
+    "UserId": 1
+  },
+  {
+    "money": 336453,
+    "gender": "Male",
+    "age": 16,
+    "UserId": 2
+  },
+  {
+    "money": 276601,
+    "gender": "Female",
+    "age": 38,
+    "UserId": 4
+  },
+  {
+    "money": 639375,
+    "gender": "Male",
+    "age": 32,
+    "UserId": 5
+  },
+  {
+    "money": 650194,
+    "gender": "Female",
+    "age": 23,
+    "UserId": 7
+  },
+  {
+    "money": 624302,
+    "gender": "Female",
+    "age": 15,
+    "UserId": 9
+  },
+  {
+    "money": 204442,
+    "gender": "Male",
+    "age": 58,
+    "UserId": 10
+  },
+  {
+    "money": 537611,
+    "gender": "Male",
+    "age": 53,
+    "UserId": 12
+  },
+  {
+    "money": 861335,
+    "gender": "Male",
+    "age": 16,
+    "UserId": 13
+  },
+  {
+    "money": 206291,
+    "gender": "Male",
+    "age": 51,
+    "UserId": 14
+  },
+  {
+    "money": 964711,
+    "gender": "Female",
+    "age": 59,
+    "UserId": 15
+  },
+  {
+    "money": 159213,
+    "gender": "Female",
+    "age": 40,
+    "UserId": 16
+  },
+  {
+    "money": 985142,
+    "gender": "Male",
+    "age": 58,
+    "UserId": 17
+  },
+  {
+    "money": 190534,
+    "gender": "Male",
+    "age": 56,
+    "UserId": 19
+  },
+  {
+    "money": 402167,
+    "gender": "Female",
+    "age": 40,
+    "UserId": 20
+  }
+]
