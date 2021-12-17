@@ -17,28 +17,33 @@ class Controller {
 
   static buyerDaftarPost(req, res) {
     const { name, email, password, gender, age } = req.body
-    Users.findOne({ where: { email: email } })
-      .then(data => {
-        if (data) {
-          let errors = 'Email sudah ada. Harap gunakan email yang lain.'
-          return res.redirect(`/buyer/daftar?errors=${errors}`)
-        }
-        const valueUsers = { name, email, password, role: 'buyer', createdAt: new Date(), updatedAt: new Date() }
-        return Users.create(valueUsers)
-      })
-      .then(data => {
-        const valueBuyers = { gender, age: parseInt(age), UserId: data.dataValues.id, createdAt: new Date(), updatedAt: new Date() }
-        return UsersDetails.create(valueBuyers)
-      })
-      .then(data => res.redirect('/buyer/login'))
-      .catch(err => {
-        if (err.name == "SequelizeValidationError") {
-          let errors = err.errors.map(el => el.message)
-          res.redirect(`/buyer/daftar?errors=${errors}`)
-        } else {
-          res.send(err)
-        }
-      })
+    if (age < 17) {
+      let errors = 'Maaf umur Anda belum mencukupi. Khusus untuk 17 Tahun Keatas'
+      res.redirect(`/buyer/daftar?errors=${errors}`)
+    } else {
+      Users.findOne({ where: { email: email } })
+        .then(data => {
+          if (data) {
+            let errors = 'Email sudah ada. Harap gunakan email yang lain.'
+            return res.redirect(`/buyer/daftar?errors=${errors}`)
+          }
+          const valueUsers = { name, email, password, role: 'buyer', createdAt: new Date(), updatedAt: new Date() }
+          return Users.create(valueUsers)
+        })
+        .then(data => {
+          const valueBuyers = { gender, age: parseInt(age), UserId: data.dataValues.id, createdAt: new Date(), updatedAt: new Date() }
+          return UsersDetails.create(valueBuyers)
+        })
+        .then(data => res.redirect('/buyer/login'))
+        .catch(err => {
+          if (err.name == "SequelizeValidationError") {
+            let errors = err.errors.map(el => el.message)
+            res.redirect(`/buyer/daftar?errors=${errors}`)
+          } else {
+            res.send(err)
+          }
+        })
+    }
   }
 
   static buyerLogin(req, res) {
@@ -124,6 +129,10 @@ class Controller {
   }
 
   static buyerMyStock(req, res) {
+    let success = ''
+    if (req.query.status) {
+      success = 'Berhasil mengirimkan email. Silakan cek email Anda.'
+    }
     Users.findByPk(req.session.users.usersId, {
       include: {
         model: Products,
@@ -131,71 +140,69 @@ class Controller {
       }
     })
       .then(data => {
-        res.render('buyer/buyerMyStock', { data: data.Products, formatUang })
+        res.render('buyer/buyerMyStock', { data: data.Products, success, formatUang })
       })
   }
 
   static buyerJual(req, res) {
     let uang;
-    UsersDetails.findOne({ where: { UserId: req.params.userId } })
-      .then(data => {
-        uang = data.money
-        return Products.findOne({ where: { id: req.params.productId } })
-      })
-      .then(data => {
-        let tambah = uang + data.price
-        return UsersDetails.update({ money: tambah }, { where: { UserId: req.params.userId } })
-      })
-      .then(data => {
-        return Owners.destroy({
-          where: {
-            UserId: req.params.userId,
-            ProductId: req.params.productId
-          }
-        })
-      })
-      .then(data => {
-        res.redirect('/buyer/investasiSaya')
-      })
-      .catch(err => {
-        res.send(err)
-      })
+    UsersDetails.findOne({where: {UserId: req.params.userId}})
+    .then(data => {
+      uang = data.money
+      return Products.findOne({where: {id: req.params.productId}})
+    })
+    .then(data => {
+      let tambah = uang + data.price
+      return UsersDetails.update({money: tambah}, {where: {UserId: req.params.userId}})
+    })
+    .then(data => {
+      return Owners.destroy({where: {
+        UserId: req.params.userId,
+        ProductId: req.params.productId
+      }})
+    })
+    .then(data => {
+      res.redirect('/buyer/investasiSaya')
+    })
+    .catch(err => {
+      res.send(err)
+    })
   }
 
   static buyerBuy(req, res) {
     let uang;
-    Owners.findOne({ where: { UserId: req.params.userId, ProductId: req.params.productId } })
-      .then(data => {
-        if (data) {
-          let errors = 'Maaf Anda telah membeli produk tersebut.'
-          return res.redirect(`/buyer?errors=${errors}`)
-        } else {
-          return UsersDetails.findOne({ where: { UserId: req.params.userId } })
-        }
-      })
-      .then(data => {
-        uang = data.money
-        return Products.findOne({ where: { id: req.params.productId } })
-      })
-      .then(data => {
-        let selisih = uang - data.price
-        if (selisih < 0) {
-          let errors = 'Maaf uang Anda tidak cukup.'
-          return res.redirect(`/buyer?errors=${errors}`)
-        } else {
-          return UsersDetails.update({ money: selisih }, { where: { UserId: req.params.userId } })
-        }
-      })
-      .then(data => {
-        let buy = { UserId: req.params.userId, ProductId: req.params.productId, createdAt: new Date(), updatedAt: new Date() }
-        return Owners.create(buy)
-      })
-      .then(data => {
-        res.redirect('/buyer/investasiSaya')
-      })
-      .catch(err => {
-        res.send(err)
-      })
+    Owners.findOne({where: {UserId: req.params.userId, ProductId: req.params.productId}})
+    .then(data => {
+      if(data) {
+        let errors = 'Maaf Anda telah membeli produk tersebut.'
+        res.redirect(`/buyer?errors=${errors}`)
+      } else {
+        return UsersDetails.findOne({where: {UserId: req.params.userId}})
+      }
+    })
+    .then(data => {
+      uang = data.money
+      return Products.findOne({where: {id: req.params.productId}})
+    })
+    .then(data => {
+      let selisih = uang - data.price
+      if(selisih < 0) {
+        let errors = 'Maaf uang Anda tidak cukup.'
+        res.redirect(`/buyer?errors=${errors}`)
+      } else {
+        return UsersDetails.update({money: selisih}, {where: {UserId: req.params.userId}})
+        .then(data => {
+          let buy = { UserId: req.params.userId, ProductId: req.params.productId, createdAt:new Date(), updatedAt:new Date() }
+          return Owners.create(buy)
+        })
+        .then(data => {
+          res.redirect('/buyer/investasiSaya')
+        })
+      }
+    })
+    .catch(err => {
+      res.send(err)
+    })
   }
 
 
@@ -207,37 +214,41 @@ class Controller {
         include: Users
       }
     })
-    .then(data => {
-      const transporter = nodemailer.createTransport({
-        service: "hotmail",
-        auth: {
-          user: "fint8-dr@outlook.com",
-          pass: "hacktiv8fint8"
-        }
-      });
-  
-      const option = {
-        from: "fint8-dr@outlook.com",
-        to: "ridwan@ridwanmail.com",
-        subject: "Bukti transaksi Produk Investasi",
-        html: `
-        <p>Nama : ${data.name}</p>
-        <p>Email : ${data.email}</p>
-        <p>Image: <img src="https://cldup.com/P0b1bUmEet.png" width="16" height="16"/></p>
-            <p>GIF (requires "amp-anim" script in header):<br/>
-              <img src="https://cldup.com/D72zpdwI-i.gif" width="500" height="350"/></p>
+      .then(data => {
+        const dataProduct = data.Products.map(val => val.name).join(', ')
+        const totalinvest = data.Products.map(val => val.price).reduce((prev, cur) => prev + cur)
+        const transporter = nodemailer.createTransport({
+          service: "hotmail",
+          auth: {
+            user: "fint8-dr@outlook.com",
+            pass: "hacktiv8fint8"
+          }
+        });
+
+        const option = {
+          from: "fint8-dr@outlook.com",
+          to: `${data.email}`,
+          subject: "Informasi Transaksi Online - Fint8 [BERHASIL]",
+          html: `
+        <h1>Informasi Transaksi Online - Fint8 [BERHASIL]</h1>
+        <p>Yth. Bapak/Ibu <b>${data.name} </b>, &nbsp Terima Kasih telah berinvestasi dan mendukung para vendor di Fint8 </p>
+        <p>Anda telah berinvestasi di : <b> ${dataProduct} </b><br>
+        dengan total investasi sebesar <b>${formatUang(totalinvest)} </b> </p>
+         <img src="https://c.tenor.com/jw92b2HUuTAAAAAC/stonks-stocks.gif" width="500" height="350"/></p>
+         <!-- <img src="https://cldup.com/D72zpdwI-i.gif" width="500" height="350"/></p>> -->
         `
-      }
-  
-      transporter.sendMail(option, function (err, info) {
-        if (err) {
-          console.log(err);
-          return
         }
-        console.log("terkirim : " + info.response);
-        res.redirect('/buyer/investasiSaya')
+
+        transporter.sendMail(option, function (err, info) {
+          if (err) {
+            console.log(err);
+            return
+          }
+          console.log("terkirim : " + info.response);
+          res.redirect('/buyer/investasiSaya?status=success')
+        })
       })
-    })
+      .catch(err => res.send(err))
 
 
 

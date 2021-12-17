@@ -57,7 +57,7 @@ class Controller {
                     let login = bcryptjs.compareSync(password, data.dataValues.password)
                     if (login) {
                         req.session.users = { usersId: data.dataValues.id, role: data.dataValues.role }
-                        res.redirect('/vendor/detail/'+data.dataValues.id)
+                        res.redirect('/vendor/detail')
                     } else {
                         let errors = 'maaf email/password salah'
                         res.redirect(`/vendor/login?errors=${errors}`)
@@ -142,7 +142,7 @@ class Controller {
         Products
 
             .findAll({
-                include: { model: Users, where: { id: req.params.id } }
+                include: { model: Users, where: { id: req.session.users.usersId } }
                 // where : {id:req.params.id}
                 // where : {id:req.params.id}
             })
@@ -151,7 +151,7 @@ class Controller {
 
                 dataProduct = data
                 // res.send(data)
-                return Users.findByPk(req.params.id)
+                return Users.findByPk(req.session.users.usersId)
             })
             .then(data => {
 
@@ -199,7 +199,7 @@ class Controller {
                 }
             })
             .then(data => {
-                res.redirect('/vendor/detail/' + req.params.userId)
+                res.redirect('/vendor/detail')
             })
             .catch(err => {
                 res.send(err)
@@ -210,7 +210,7 @@ class Controller {
         // res.render('vendor/addproduct')
 
         Users
-            .findByPk(req.params.id)
+            .findByPk(req.session.users.usersId)
 
             .then(data => {
                 // res.send(data)
@@ -226,10 +226,10 @@ class Controller {
     static postvendoradd(req, res) {
         // res.send('postvendoradd')
         const { name, price_return, risk, price } = req.body;
-        const value = { UserId: req.params.id, name, price_return, risk, price, createdAt: new Date(), updatedAt: new Date() };
+        const value = { UserId: req.session.users.usersId, name, price_return, risk, price, createdAt: new Date(), updatedAt: new Date() };
         Products
             .create(value)
-            .then(data => { res.redirect('/vendor/detail/' + req.params.id) })
+            .then(data => { res.redirect('/vendor/detail') })
     }
 }
 

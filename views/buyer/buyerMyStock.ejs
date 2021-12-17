@@ -2,10 +2,19 @@
 <%- include('partials/navbar') %>
 <div class="container">
   <div class="row my-3">
-    <div class="col-md-12">
+    <div class="col-md-6">
       <h2>Daftar Investasi Saya</h2>
     </div>
+    <div class="col-md-6 text-end">
+      <a class="btn btn-success" href="/buyer/sendmail/"  role="button">Kirim Bukti Transaksi</a>
+    </div>
   </div>
+  <% if(success) { %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <%= success %>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% } %>
   <div class="row my-3">
     <% data.forEach(val => { %>
     <div class="col-md-4">
@@ -28,7 +37,6 @@
     </div>
     <% }) %>
   </div>
-  <a class="btn btn-danger" href="/buyer/sendmail/"  role="button">send mail</a>
 </div>    
 
 <%- include('../partials/footer') %>

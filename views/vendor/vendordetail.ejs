@@ -9,7 +9,7 @@
         <div class="card-body">
           <!-- <h5 class="card-title">Saldo Anda : xxxx </h5> -->
           <p class="card-text">Klik tombol Dibawah untuk menambah produk investasi</p>
-          <a class="btn btn-light" href="/vendor/detail/add/<%=dataUser.id%>" role="button">Add Product</a>
+          <a class="btn btn-light" href="/vendor/detail/add" role="button">Add Product</a>
         </div>
       </div>
     </div>
@@ -45,17 +45,13 @@
                 Jumlah Investor : <% let x = 0%> 
                 <%dataOwner.forEach(el => {if(el.ProductId === val.id){ %>
 
-                 
                  <% x = el.jumlah %> 
-                  
-                  
-              
-                
+                   
               <% }}) %>
               <%= x %> 
               </p>
               <p class="card-text fw-bold"><%= formatUang(val.price) %></p>
-              <a class="btn btn-danger" href="/vendor/delete/<%=dataUser.id%>/<%=val.id%>" role="button">Hapus Produk</a>
+              <a class="btn btn-danger" href="/vendor/delete/<%=val.id%>" role="button">Hapus Produk</a>
             </div>
           </div>
         </div>

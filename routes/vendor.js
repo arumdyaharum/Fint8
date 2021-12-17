@@ -18,7 +18,7 @@ router.use((req, res, next) => {
       if(req.session.users.role == 'vendor') {
         next()
       } else {
-        let errors = 'Maaf Anda tidak bisa masuk.'
+        let errors = 'Maaf anda seorang Buyer. Silahkan masuk di page Buyer.'
         res.redirect(`/vendor/login?errors=${errors}`)
       }
     } else {
@@ -28,9 +28,9 @@ router.use((req, res, next) => {
   })
 
 
-router.get('/delete/:userId/:productId', Controller.vendordelete )
-router.get('/detail/add/:id', Controller.getvendoradd )
-router.post('/detail/add/:id', Controller.postvendoradd )
-router.get('/detail/:id', Controller.vendordetail )
+router.get('/delete/:productId', Controller.vendordelete )
+router.get('/detail/add', Controller.getvendoradd )
+router.post('/detail/add', Controller.postvendoradd )
+router.get('/detail', Controller.vendordetail )
 
 module.exports = router;
