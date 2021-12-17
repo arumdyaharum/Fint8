@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const PORT = process.env.PORT || 3000
 const router = require('./routes/index.js')
 const session = require('express-session')
 
@@ -21,7 +21,7 @@ app.use(session({
 app.use('/', router)
 
 app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
+  console.log(`Example app listening at http://localhost:${PORT}`)
 })
 
 // npx sequelize-cli model:generate --name Users --attributes name:string,email:string,password:string,role:string
