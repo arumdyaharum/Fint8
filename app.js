@@ -20,7 +20,7 @@ app.use(session({
 
 app.use('/', router)
 
-app.listen(port, () => {
+app.listen(PORT, () => {
   console.log(`Example app listening at http://localhost:${PORT}`)
 })
 
