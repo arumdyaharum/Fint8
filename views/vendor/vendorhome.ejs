@@ -40,7 +40,7 @@
               <h5 class="card-title"><%= val.name %></h5>
               <p class="card-text"><span class="text-muted"><%= val.User.name %></span></p>
               <p class="card-text">
-                Return : <%= val.price_return %>%<br>
+                Return :<b> <span style="color: green;"> <%= val.price_return %>% </span> </b><br>
                 Risk : <%= val.risk %>% <br>
                 Jumlah Investor : <% let x = 0%> 
                 <%dataOwner.forEach(el => {if(el.ProductId === val.id){ %>

@@ -38,7 +38,7 @@
               <h5 class="card-title"><%= val.name %></h5>
               <p class="card-text"><span class="text-muted"><%= val.User.name %></span></p>
               <p class="card-text">
-                Return : <%= val.price_return %>%<br>
+                <b> <span style="color: green;"> Yearly Return :  <%= val.price_return %>% </span> </b><br>
                 Risk : <%= val.risk %>%
               </p>
               <p class="card-text fw-bold"><%= formatUang(val.price) %></p>
